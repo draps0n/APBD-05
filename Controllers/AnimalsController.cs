@@ -70,4 +70,18 @@ public class AnimalsController : ControllerBase
         
         return NoContent();
     }
+    
+    [HttpGet("visits/{animalId:int}")] // Czy nie lepiej "{animalId:int}/visits"
+    public IActionResult GetVisitsForAnimal(int animalId)
+    {
+        var animalVisits = _animalService.GetVisitsForAnimal(animalId);
+        return Ok(animalVisits);
+    }
+    
+    [HttpPost("visits")]
+    public IActionResult AddVisit([FromBody] Visit visit)
+    {
+        _animalService.AddVisit(visit);
+        return Created();
+    }
 }

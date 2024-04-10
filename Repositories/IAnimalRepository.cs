@@ -8,4 +8,6 @@ public interface IAnimalRepository
     Animal? FetchAnimal(int id);
     void AddAnimal(Animal animal);
     void DeleteAnimal(Animal animal);
+    IEnumerable<Visit> GetVisitsForAnimal(int animalId);
+    void AddVisit(Visit visit);
 }

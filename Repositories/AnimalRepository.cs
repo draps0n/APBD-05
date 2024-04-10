@@ -10,6 +10,12 @@ public class AnimalRepository : IAnimalRepository
         new Animal(2, "Mruczek", "Kot", 2, "biały"),
         new Animal(3, "Monte", "Królik", 2.5, "biało-brązowy"),
     };
+    
+    private static readonly ICollection<Visit> Visits = new List<Visit>
+    {
+        new Visit(1, DateTime.Today, 2, "Przegląd", 200.00),
+        new Visit(2, DateTime.Today, 3, "Szczepienie", 600.00)
+    };
 
     public ICollection<Animal> FetchAnimals()
     {
@@ -29,5 +35,16 @@ public class AnimalRepository : IAnimalRepository
     public void DeleteAnimal(Animal animal)
     {
         Animals.Remove(animal);
+    }
+
+    public IEnumerable<Visit> GetVisitsForAnimal(int animalId)
+    {
+        var visits = Visits.Where(visit => visit.AnimalId == animalId);
+        return visits;
+    }
+    
+    public void AddVisit(Visit visit)
+    {
+        Visits.Add(visit);
     }
 }
